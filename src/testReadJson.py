@@ -35,8 +35,8 @@ if __name__ == "__main__":
     maxFreq = 10000
 
     ampConst = 1
-    startFreq = 0
-    endFreq = 
+    startFreq = (fromMac[0]/255) * 10000
+    endFreq = (toMac[0]/255) * 10000
 
     if True:
         # amplitude = (endFreq - startFreq)*2
