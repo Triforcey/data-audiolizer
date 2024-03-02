@@ -5,6 +5,7 @@ from datetime import datetime
 import pytz
 import numpy as np
 import sounddevice as sd
+import threading
 
 class HandlePackets:
   def progress_bar(self, current, total, eta): # Added self as the first parameter
@@ -53,7 +54,10 @@ class HandlePackets:
       # Play the wave data immediately
       # Normalize the wave data to avoid loud sounds
       wavData = wavData / np.max(np.abs(wavData), axis=0)
-      sd.play(wavData, sampleRate, blocking=False)
+
+      # Create a separate thread for playing the audio
+      play_thread = threading.Thread(target=sd.play, args=(wavData, sampleRate))
+      play_thread.start()
       return
 
     self.counter += 1
