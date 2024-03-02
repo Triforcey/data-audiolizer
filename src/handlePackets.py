@@ -39,18 +39,12 @@ class HandlePackets:
     packet_timing = unix_timestamp - self.initialTimestamp
 
     # Decide if using packet
-    if live:
-      if self.lastPacketTime is None or not sd.get_stream().active:  # Check if playrec has not been called yet
-        self.lastPacketTime = packet_timing
-      else:
+    if self.lastPacketTime is not None:
+      if packet_timing - self.lastPacketTime <= .3:
         return
+      self.lastPacketTime = packet_timing
     else:
-      if self.lastPacketTime is not None:
-        if packet_timing - self.lastPacketTime <= .3:
-          return
-        self.lastPacketTime = packet_timing
-      else:
-        self.lastPacketTime = packet_timing
+      self.lastPacketTime = packet_timing
 
     if live:
       # Get wave data
