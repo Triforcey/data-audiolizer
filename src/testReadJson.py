@@ -21,8 +21,8 @@ if __name__ == "__main__":
     packetdata = flatten_json(packetdata)
     # print(packetdata)
     packetLength = float(packetdata['frame.len'])/10
-    fromMac=[]
-    toMac=[]
+    fromMac=packetdata['wlan.sa'].split(":")
+    toMac=packetdata['wlan.da'].split(":")
     numWaves = 1
     # print(packetLength)
     samplerate = 44100
