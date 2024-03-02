@@ -51,7 +51,9 @@ class HandlePackets:
       wavData = coolInsturment(packet, sampleRate, True)
 
       # Play the wave data immediately
-      sd.play(wavData, sampleRate)
+      # Normalize the wave data to avoid loud sounds
+      wavData = wavData / np.max(np.abs(wavData), axis=0)
+      sd.play(wavData, sampleRate, blocking=False)
       return
 
     self.counter += 1
