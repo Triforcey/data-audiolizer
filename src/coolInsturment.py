@@ -1,5 +1,7 @@
 
 import os
+
+from createExCurve import createExCurve
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 def flatten_json(json_obj, flat_json={}):
@@ -9,8 +11,9 @@ def flatten_json(json_obj, flat_json={}):
         else:
             flat_json[key] = json_obj[key]
     return flat_json
+packetLengthCurve = createExCurve(20, 1000, 1, 10, 1.01)
 def coolInsturment(packetdata, samplerate, dontWrite = False):
-
+    global packetLengthCurve
     from scipy.io.wavfile import write
     import numpy as np
     import json
@@ -20,7 +23,9 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     #     packetdata = json.load(f)
     # packetdata = flatten_json(packetdata)
     # print(packetdata)
-    packetLength = (float(packetdata['frame.len'])/20.)**1.2
+    # packetLength = (float(packetdata['frame.len'])/20.)**1.2
+    packetLength = packetLengthCurve(float(packetdata['frame.len']))
+
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
     # print(packetdata['wlan.ra'].split(":"))
