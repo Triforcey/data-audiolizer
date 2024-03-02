@@ -62,6 +62,7 @@ def coolInsturment(packetdata, samplerate):
     # if not toMac[3]<=25:
         print(toMac[3])
     if  toMac[3]<=205:
+        print('normal stuff')
         if 170<=toMac[2]/3 <256:
             data = amplitude * np.sin(2. * np.pi * modulator * t)
         elif 85<toMac[2]/3 <170:
@@ -70,7 +71,7 @@ def coolInsturment(packetdata, samplerate):
             data = amplitude * np.tan(2. * np.pi * modulator * t)
             write("example.wav", samplerate, data.astype(np.int16))
     elif toMac[3]<=230:
-
+        print('2nd condition')
         samplerate = 44100
         fs1 = min(fromMac[3], fromMac[4]) / (toMac[0] / 32)
         fs2 = max(fromMac[3], fromMac[4]) * (toMac[1] / 32)
@@ -89,8 +90,7 @@ def coolInsturment(packetdata, samplerate):
         write("example.wav", samplerate, data.astype(np.int16))
     # elif toMac[3] <0:
     else:
-    
-
+        print('dial up cuh')
         from scipy.io.wavfile import write
         import numpy as np
         samplerate = 44100  # Sample rate in Hz
