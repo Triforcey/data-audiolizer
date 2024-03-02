@@ -59,7 +59,7 @@ if __name__ == "__main__":
         modulator = np.tan(2.0 * np.pi * t / packetLength)  # One cycle over the packet length
         modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
     # if not toMac[3]<=25:
-    if False:
+    if not toMac[3]<=25:
         if 170<=toMac[2]/3 <256:
             data = amplitude * np.sin(2. * np.pi * modulator * t)
         elif 85<toMac[2]/3 <170:
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         from scipy.io.wavfile import write
         import numpy as np
         samplerate = 44100; fs1 = min (fromMac[3], fromMac[4])/(toMac[0]/32); fs2 = max (fromMac[3], fromMac[4])*(toMac[1]/32)
-        t = np.linspace(0., 1., samplerate)
+        t = np.linspace(0., 1.* packetLength, samplerate*packetLength)
         amplitude = np.iinfo(np.int16).max
         data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
         #data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
