@@ -76,7 +76,7 @@ class HandlePackets:
     eta = remaining_packets * time_per_packet
 
     # Print progress bar
-    print(self.progress_bar(self.counter, self.maxPackets, eta), end='\r')
+    print(self.progress_bar(self.counter, self.maxPackets, eta))
 
     if finalRun:
       print('Length in seconds:', len(self.totalWav) / sampleRate)

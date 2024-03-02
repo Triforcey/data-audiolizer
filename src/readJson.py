@@ -22,9 +22,16 @@ def read_pcapng_file(pcapng_file, on_packet, interface):
   if (pcapng_file == '-'): live = True
   tshark = subprocess.Popen(['tshark', '-r', pcapng_file, '-T', 'json'], stdout=subprocess.PIPE) if not live else subprocess.Popen(['tshark', '-i', interface, '-T', 'json'], stdout=subprocess.PIPE)
   json_buffer = ''
+  activateParsing = False
   for line in iter(tshark.stdout.readline, b''):
     line = line.decode('utf-8').rstrip()
-    if line == '[' or line == ']':
+    if line == '[':
+      activateParsing = True
+      continue
+    if line == ']':
+      activateParsing = False
+      continue
+    if not activateParsing:
       continue
     json_buffer += line
     if line.startswith('  }'):
