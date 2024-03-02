@@ -41,7 +41,7 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     linTo = dataRate/20.
     t = np.linspace(0., linTo*packetLength, int(samplerate*packetLength))
     amplitude = 0
-    maxFreq = 8000
+    maxFreq = 6000
 
     ampConst = sigdbm
     startFreq = (fromMac[0]/255) * maxFreq
