@@ -44,8 +44,8 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     maxFreq = 8000
 
     ampConst = sigdbm
-    startFreq = (fromMac[0]/255) * 10000
-    endFreq = (toMac[0]/255) * 10000
+    startFreq = (fromMac[0]/255) * maxFreq
+    endFreq = (toMac[0]/255) * maxFreq
 
     if True:
         # amplitude = (endFreq - startFreq)*2
