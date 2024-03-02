@@ -9,7 +9,7 @@ def flatten_json(json_obj, flat_json={}):
         else:
             flat_json[key] = json_obj[key]
     return flat_json
-def coolInsturment(packetdata, samplerate):
+def coolInsturment(packetdata, samplerate, dontWrite = False):
 
     from scipy.io.wavfile import write
     import numpy as np
@@ -68,8 +68,9 @@ def coolInsturment(packetdata, samplerate):
         elif 85<toMac[2]/3 <170:
             data = amplitude * np.cos(2. * np.pi * modulator * t)
         else:
-            data = amplitude * np.tan(2. * np.pi * modulator * t)
-            write("example.wav", samplerate, data.astype(np.int16))
+            data = (amplitude * np.tan(2. * np.pi * modulator * t)).astype(np.int16)
+            if (not dontWrite): write("example.wav", samplerate, data)
+            return data
     elif toMac[3]<=230:
         print('2nd condition')
         samplerate = 44100
@@ -86,8 +87,9 @@ def coolInsturment(packetdata, samplerate):
              data2 = amplitude * np.tan(2. * np.pi * fs2 * t)
 
     #         data2 = amplitude * np.tan(2. * np.pi * fs2 * t)
-        data = data1 + data2
-        write("example.wav", samplerate, data.astype(np.int16))
+        data = (data1 + data2).astype(np.int16)
+        if (not dontWrite): write("example.wav", samplerate, data)
+        return data
     # elif toMac[3] <0:
     else:
         print('dial up cuh')
@@ -109,7 +111,8 @@ def coolInsturment(packetdata, samplerate):
         rhythm = np.tile(np.concatenate((beat, silence)), int(duration / (2 * beat_duration)))  # Repeat as many times as fit into 'duration'
 
         # Write the data to a WAV file
-        write('beat.wav', samplerate, (rhythm * np.iinfo(np.int16).max).astype(np.int16))
+        data = (rhythm * np.iinfo(np.int16).max).astype(np.int16)
+        if (not dontWrite): write('beat.wav', samplerate, data)
+        return data
 
     # print(data)
-    

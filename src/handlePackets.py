@@ -48,7 +48,7 @@ class HandlePackets:
     self.counter += 1
     finalRun = self.counter == self.maxPackets
 
-    wavData = coolInsturment(packet, sampleRate)
+    wavData = coolInsturment(packet, sampleRate, True)
 
     # Convert packet timing to samples
     packet_timing_samples = int(packet_timing * sampleRate)
