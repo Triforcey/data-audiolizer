@@ -5,11 +5,6 @@ from datetime import datetime
 import pytz
 import numpy as np
 import sounddevice as sd
-<<<<<<< HEAD
-import threading
-import pyaudio
-=======
->>>>>>> parent of fa2e9e4 (multi threading playing)
 
 class HandlePackets:
   def progress_bar(self, current, total, eta): # Added self as the first parameter
@@ -61,41 +56,7 @@ class HandlePackets:
       # Play the wave data immediately
       # Normalize the wave data to avoid loud sounds
       wavData = wavData / np.max(np.abs(wavData), axis=0)
-<<<<<<< HEAD
-
-      # Create a separate thread for playing the audio
-      # Create a PyAudio object
-      p = pyaudio.PyAudio()
-
-      # Define callback function for the stream
-      def callback(in_data, frame_count, time_info, status):
-          data = wavData.astype(np.float32).tostring()
-          return (data, pyaudio.paContinue)
-
-      # Open a stream with the callback function
-      stream = p.open(format=pyaudio.paFloat32,
-              channels=1,
-              rate=sampleRate,
-              output=True,
-              stream_callback=callback)
-
-      # Start the stream
-      stream.start_stream()
-
-      # Here, you may want to add some logic to stop the stream when the sound is done playing
-      # For example, you could use a threading.Timer with a duration of len(wavData) / sampleRate
-      # Remember to also close the PyAudio object when you're done with it
-      def stop_stream():
-          stream.stop_stream()
-          stream.close()
-          p.terminate()
-
-      play_duration = len(wavData) / sampleRate
-      play_thread = threading.Timer(play_duration, stop_stream)
-      play_thread.start()
-=======
       sd.play(wavData, sampleRate, blocking=False)
->>>>>>> parent of fa2e9e4 (multi threading playing)
       return
 
     self.counter += 1
