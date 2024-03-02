@@ -33,5 +33,4 @@ def read_pcapng_file(pcapng_file, on_packet):
       if (counter >= start):
         on_packet(flatten_json(packet))
       json_buffer = ''
-  return packets
-packets = read_pcapng_file(sys.argv[1], HandlePackets().handle)
+read_pcapng_file(sys.argv[1], HandlePackets().handle)
