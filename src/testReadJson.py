@@ -54,12 +54,11 @@ if __name__ == "__main__":
     if 170<=fromMac[2]/3 <256:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
     elif 85<fromMac[2]/3 <170:
-        # Create a sine wave modulator
-        modulator = np.sin(modSpeed * np.pi * t / packetLength)  # One cycle over the packet length
-        modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
+        modulator = np.sin(modSpeed * np.pi * t / packetLength)  
+        modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  
     else:
-        modulator = np.tan(2.0 * np.pi * t / packetLength)  # One cycle over the packet length
-        modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
+        modulator = np.tan(2.0 * np.pi * t / packetLength)  
+        modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  
     # if not toMac[3]<=25:
         print(toMac[3])
     if  toMac[3]<=205:
@@ -94,22 +93,22 @@ if __name__ == "__main__":
 
         from scipy.io.wavfile import write
         import numpy as np
-        samplerate = 44100  # Sample rate in Hz
-        freq = fromMac[4]  # Frequency of the beat in Hz (low frequency for a "thump" sound)
-        bpm = toMac[4]  # Beats per minute
-        volume = 0.5  # Volume of the sound (0 to 1)
+        samplerate = 44100  
+        freq = fromMac[4]  
+        bpm = toMac[4] 
+        volume = 0.5  
 
-        duration = packetLength+1  # Desired total duration in seconds
-        t = np.linspace(0., duration, int(samplerate * duration))  # Time array that lasts for 'duration' seconds
+        duration = packetLength+1  
+        t = np.linspace(0., duration, int(samplerate * duration))  
 
-        beat_duration = 60 / bpm  # Duration of a quarter note in seconds
-        beat = volume * np.sin(2. * np.pi * freq * t[:int(samplerate * beat_duration)])  # Signal for one beat
-        silence = np.zeros_like(beat)  # Silence for one beat
+        beat_duration = 60 / bpm  
+        beat = volume * np.sin(2. * np.pi * freq * t[:int(samplerate * beat_duration)])  
+        silence = np.zeros_like(beat)  
 
-        # Create a rhythm by repeating the beat and silence
-        rhythm = np.tile(np.concatenate((beat, silence)), int(duration / (2 * beat_duration)))  # Repeat as many times as fit into 'duration'
+        
+        rhythm = np.tile(np.concatenate((beat, silence)), int(duration / (2 * beat_duration)))  
 
-        # Write the data to a WAV file
+        
         write('beat.wav', samplerate, (rhythm * np.iinfo(np.int16).max).astype(np.int16))
 
     # print(data)
