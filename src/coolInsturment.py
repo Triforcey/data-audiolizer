@@ -25,9 +25,12 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     # print(packetdata)
     # packetLength = (float(packetdata['frame.len'])/20.)**1.2
     packetLength = packetLengthCurve(float(packetdata['frame.len']))
-
-    fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
-    toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
+    if 'wlan.ta' in packetdata.keys():
+        fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
+        toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
+    else:
+        fromMac=[int(x,16) for x in packetdata['wlan.sa'].split(":")]
+        toMac=[int(x,16) for x in packetdata['wlan.da'].split(":")]
     # print(packetdata['wlan.ra'].split(":"))
     dataRate=(float(packetdata['wlan_radio.data_rate']))
     sigdbm=int(packetdata['wlan_radio.signal_dbm'].lstrip("-"))/1000
