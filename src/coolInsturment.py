@@ -17,7 +17,7 @@ def coolInsturment(packetdata, samplerate):
     packetLength = (float(packetdata['frame.len'])/20.)**1.2
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
-    dataRate=(int(packetdata['wlan_radio.data_rate']))
+    dataRate = int(np.floor(float(packetdata['wlan_radio.data_rate'])))
     sigdbm=int(packetdata['wlan_radio.signal_dbm'].lstrip("-"))/1000
     # print(fromMac)
     numWaves = 1
@@ -66,4 +66,5 @@ def coolInsturment(packetdata, samplerate):
     data = data[:int(len(data)*numWaves)]
 
     # print(data)
-    write("example.wav", samplerate, data.astype(np.int16))
+    # write("example.wav", samplerate, data.astype(np.int16))
+    return data.astype(np.int16)
