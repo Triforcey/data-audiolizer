@@ -79,8 +79,9 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     elif toMac[3]<=230:
         print('2nd condition')
         samplerate = 44100
-        fs1 = min(fromMac[3], fromMac[4]) / (toMac[0] / 32)
-        fs2 = max(fromMac[3], fromMac[4]) * (toMac[1] / 32)
+
+        fs1 = min(fromMac[3], fromMac[4]) / (toMac[0]+.01 / 32)
+        fs2 = max(fromMac[3], fromMac[4]) * (toMac[1]+.01 / 32)
         packetLength = 10
         data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
         #data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
