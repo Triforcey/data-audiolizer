@@ -23,18 +23,21 @@ if __name__ == "__main__":
     packetLength = float(packetdata['frame.len'])/10
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
+    dataRate=(int(packetdata['wlan_radio.data_rate']))
+    sigdbm=int(packetdata['wlan_radio.signal_dbm'].lstrip("-"))/1000
     # print(fromMac)
     numWaves = 1
     # print(packetLength)
     samplerate = 44100
-    packetSpeed = 10
+    packetSpeed = 1
     fs = 1/packetLength
-    linTo = 9.
+    # linTo = 30.
+    linTo = dataRate/20.
     t = np.linspace(0., linTo*packetLength, int(samplerate*packetLength))
-    amplitude = 0;
+    amplitude = 0
     maxFreq = 10000
 
-    ampConst = 1
+    ampConst = sigdbm
     startFreq = (fromMac[0]/255) * 10000
     endFreq = (toMac[0]/255) * 10000
 
@@ -44,8 +47,8 @@ if __name__ == "__main__":
     else:
         amplitude = np.iinfo(np.int32).max*ampConst
 
-    modShifter=2
-    modSpeed = 2.
+    modShifter= (fromMac[1]/255)* 5
+    modSpeed = (toMac[1]/255)* 5
     if False:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
     elif True:
