@@ -40,7 +40,7 @@ class HandlePackets:
 
     # Decide if using packet
     if live:
-      if (packet_timing is None) or not sd.get_stream().active:  # Check if playrec has not been called yet
+      if self.lastPacketTime is None or not sd.get_stream().active:  # Check if playrec has not been called yet
         self.lastPacketTime = packet_timing
       else:
         return
