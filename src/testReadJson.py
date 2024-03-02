@@ -71,5 +71,5 @@ if __name__ == "__main__":
     
     data = data[:int(len(data)*numWaves)]
 
-    print(data)
+    # print(data)
     write("example.wav", samplerate, data.astype(np.int16))
