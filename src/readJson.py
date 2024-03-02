@@ -20,7 +20,7 @@ def read_pcapng_file(pcapng_file, on_packet, interface):
   global start
   live = False
   if (pcapng_file == '-'): live = True
-  tshark = subprocess.Popen(['tshark', '-r', pcapng_file, '-T', 'json'], stdout=subprocess.PIPE) if not live else subprocess.Popen(['tshark', '-i', interface, '-T', 'json'], stdout=subprocess.PIPE)
+  tshark = subprocess.Popen(['tshark', '-r', pcapng_file, '-T', 'json'], stdout=subprocess.PIPE) if not live else subprocess.Popen(['tshark', '-Ii', interface, '-T', 'json'], stdout=subprocess.PIPE)
   json_buffer = ''
   activateParsing = False
   for line in iter(tshark.stdout.readline, b''):
