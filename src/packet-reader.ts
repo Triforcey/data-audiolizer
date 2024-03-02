@@ -13,6 +13,7 @@ const readPcapngFile = async (pcapngFile: string) => {
     terminal: false
   });
   let jsonBuffer = '';
+  let counter = 0;
   rl.on('line', (line) => {
     if (line === '[') return;
     if (line === ']') return;
@@ -20,9 +21,11 @@ const readPcapngFile = async (pcapngFile: string) => {
     if (line.startsWith('  }')) {
       if (jsonBuffer.endsWith(',')) jsonBuffer = jsonBuffer.slice(0, -1);
       const packet = JSON.parse(jsonBuffer);
-      console.log(JSON.stringify(packet, null, 2));
+      if (counter++ == 500) {
+        console.log(JSON.stringify(packet, null, 2));
+        process.exit(0);
+      }
       jsonBuffer = '';
-      process.exit(0);
     }
   });
 };
