@@ -68,23 +68,56 @@ if __name__ == "__main__":
             data = amplitude * np.tan(2. * np.pi * modulator * t)
             write("example.wav", samplerate, data.astype(np.int16))
     else:
+    #     from scipy.io.wavfile import write
+    #     import numpy as np
+    #     # Corrected assignment
+    #     samplerate = 10000; fs1 = fromMac[3]; fs2 = fromMac[4]*2  # Corrected assignment
+    #     t = np.linspace(0., 10., samplerate*10)
+    #     amplitude = np.iinfo(np.int16).max  # Removed duplicate assignment
+        
+    #     if 170<=toMac[4]/3 <256:
+    #         data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
+    #     elif 85<toMac[4]/3 <170:
+    #         data1 = amplitude * np.cos(2. * np.pi * fs1 * t)
+    #     else:
+    #         data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
+
+    #         # data1 = amplitude * np.tan(2. * np.pi * fs1 * t)
+      
+    #     if 170<=toMac[5]/3 <256:
+    #         data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
+    #     elif 85<toMac[5]/3 <170:
+    #         data2 = amplitude * np.cos(2. * np.pi * fs2 * t)
+    #     else:
+    #         data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
+
+    #         # data2 = amplitude * np.tan(2. * np.pi * fs2 * t)
+
+    #     # Normalize to 16-bit range
+    #     data = data1 + data2
+    #    # data /= np.max(np.abs(data))
+
+    #     # Convert to 16-bit data
+    #     data = (data * np.iinfo(np.int16).max).astype(np.int16)
+
+    #     write("example.wav", samplerate, data)
         from scipy.io.wavfile import write
         import numpy as np
-        # Corrected assignment
-        samplerate = 10000; fs1 = fromMac[3]; fs2 = fromMac[4]  # Corrected assignment
-        t = np.linspace(0., 10., samplerate*10)
-        amplitude = np.iinfo(np.int16).max*.75  # Removed duplicate assignment
-        data1 = amplitude * np.sin(2. * np.pi * fs1 * t)  # Corrected argument to np.sin
-        data2 = amplitude * np.tan(2. * np.pi * fs2 * t)  # Corrected argument to np.tan
+        samplerate = 44100; fs1 = min (fromMac[3], fromMac[4])/(toMac[0]/32); fs2 = max (fromMac[3], fromMac[4])*(toMac[1]/32)
+        t = np.linspace(0., 1., samplerate)
+        amplitude = np.iinfo(np.int16).max
+        data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
+        #data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
+        if 170<=toMac[5]/3 <256:
+             data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
+        elif 85<toMac[5]/3 <170:
+             data2 = amplitude * np.cos(2. * np.pi * fs2 * t)
+        else:
+             data2 = amplitude * np.tan(2. * np.pi * fs2 * t)
 
-        # Normalize to 16-bit range
+    #         data2 = amplitude * np.tan(2. * np.pi * fs2 * t)
         data = data1 + data2
-        data /= np.max(np.abs(data))
-
-        # Convert to 16-bit data
-        data = (data * np.iinfo(np.int16).max).astype(np.int16)
-
-        write("example.wav", samplerate, data)
+        write("example.wav", samplerate, data.astype(np.int16))
         
     # data = data[:int(len(data)*numWaves)]
 
