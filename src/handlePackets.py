@@ -39,7 +39,7 @@ class HandlePackets:
 
     # Decide if using packet
     if self.lastPacketTime is not None:
-      if packet_timing - self.lastPacketTime <= .1:
+      if packet_timing - self.lastPacketTime <= 3:
         return
       self.lastPacketTime = packet_timing
     else:
