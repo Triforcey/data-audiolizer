@@ -20,7 +20,7 @@ if __name__ == "__main__":
         packetdata = json.load(f)
     packetdata = flatten_json(packetdata)
     print(packetdata)
-    packetLength = float(packetdata['frame.len'])/10
+    packetLength = (float(packetdata['frame.len'])/20.)**1.2
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
     dataRate=(int(packetdata['wlan_radio.data_rate']))
@@ -49,9 +49,9 @@ if __name__ == "__main__":
 
     modShifter= (fromMac[1]/255)* 5
     modSpeed = (toMac[1]/255)* 5
-    if False:
+    if 170<=fromMac[2]/3 <256:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
-    elif True:
+    elif 85<fromMac[2]/3 <170:
         # Create a sine wave modulator
         modulator = np.sin(modSpeed * np.pi * t / packetLength)  # One cycle over the packet length
         modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
@@ -59,9 +59,9 @@ if __name__ == "__main__":
         modulator = np.tan(2.0 * np.pi * t / packetLength)  # One cycle over the packet length
         modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
 
-    if True:
+    if 170<=toMac[2]/3 <256:
         data = amplitude * np.sin(2. * np.pi * modulator * t)
-    elif True:
+    elif 85<toMac[2]/3 <170:
         data = amplitude * np.cos(2. * np.pi * modulator * t)
     else:
         data = amplitude * np.tan(2. * np.pi * modulator * t)
