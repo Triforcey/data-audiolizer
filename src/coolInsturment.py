@@ -53,7 +53,7 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     else:
         amplitude = np.iinfo(np.int32).max*ampConst
 
-    modShifter= (fromMac[1]/255)* 5
+    modShifter= (fromMac[1]/255)* 2
     modSpeed = (toMac[1]/255)* 5
     if 100<=fromMac[2]/3 <256:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
@@ -83,7 +83,7 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
         fs1 = min(fromMac[3], fromMac[4]) / (toMac[0]+.01 / 32)
         fs2 = max(fromMac[3], fromMac[4]) * (toMac[1]+.01 / 32)
         packetLength = 10
-        data1 = amplitude * np.sin(2. * np.pi * (fs1+modulator)/2 * t)
+        data1 = amplitude * np.sin(2. * np.pi * fs1 * t)
         #data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
         if 170<=toMac[5]/3 <256:
              data2 = amplitude * np.sin(2. * np.pi * fs2 * t)
