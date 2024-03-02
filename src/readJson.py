@@ -15,10 +15,12 @@ def flatten_json(json_obj, flat_json={}):
             flat_json[key] = json_obj[key]
     return flat_json
 
-def read_pcapng_file(pcapng_file, on_packet):
+def read_pcapng_file(pcapng_file, on_packet, interface):
   global counter
   global start
-  tshark = subprocess.Popen(['tshark', '-r', pcapng_file, '-T', 'json'], stdout=subprocess.PIPE)
+  live = False
+  if (pcapng_file == '-'): live = True
+  tshark = subprocess.Popen(['tshark', '-r', pcapng_file, '-T', 'json'], stdout=subprocess.PIPE) if not live else subprocess.Popen(['tshark', '-i', interface, '-T', 'json'], stdout=subprocess.PIPE)
   json_buffer = ''
   for line in iter(tshark.stdout.readline, b''):
     line = line.decode('utf-8').rstrip()
@@ -31,6 +33,8 @@ def read_pcapng_file(pcapng_file, on_packet):
       packet = json.loads(json_buffer)
       counter += 1
       if (counter >= start):
-        on_packet(flatten_json(packet))
+        on_packet(flatten_json(packet), live)
       json_buffer = ''
-read_pcapng_file(sys.argv[1], HandlePackets().handle)
+interface = None
+if (len(sys.argv) >= 3): interface = sys.argv[2]
+read_pcapng_file(sys.argv[1], HandlePackets().handle, interface)

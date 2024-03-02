@@ -4,6 +4,7 @@ from scipy.io.wavfile import write
 from datetime import datetime
 import pytz
 import numpy as np
+import sounddevice as sd
 
 class HandlePackets:
   def progress_bar(self, current, total, eta): # Added self as the first parameter
@@ -20,7 +21,7 @@ class HandlePackets:
     self.maxPackets = 100
     self.lastPacketTime = None
 
-  def handle(self, packet):
+  def handle(self, packet, live):
     sampleRate = 44100
 
     # Parse the date string
@@ -44,6 +45,14 @@ class HandlePackets:
       self.lastPacketTime = packet_timing
     else:
       self.lastPacketTime = packet_timing
+
+    if live:
+      # Get wave data
+      wavData = coolInsturment(packet, sampleRate, True)
+
+      # Play the wave data immediately
+      sd.play(wavData, sampleRate)
+      return
 
     self.counter += 1
     finalRun = self.counter == self.maxPackets
