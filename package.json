@@ -21,5 +21,8 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "pcap-ng-parser": "^1.0.0"
   }
 }
