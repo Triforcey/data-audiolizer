@@ -75,7 +75,7 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
         else:
             data = (amplitude * np.tan(2. * np.pi * modulator * t)).astype(np.int16)
             if (not dontWrite): write("example.wav", samplerate, data)
-            return data
+        return data
     elif toMac[3]<=230:
         print('2nd condition')
         samplerate = 44100
