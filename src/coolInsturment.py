@@ -29,7 +29,7 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
     # print(packetdata['wlan.ra'].split(":"))
-    dataRate=(int(packetdata['wlan_radio.data_rate']))
+    dataRate=(float(packetdata['wlan_radio.data_rate']))
     sigdbm=int(packetdata['wlan_radio.signal_dbm'].lstrip("-"))/1000
     # print(fromMac)
     numWaves = 1
