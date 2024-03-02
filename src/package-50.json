@@ -1,0 +1,257 @@
+{
+  "_index": "packets-2024-03-01",
+  "_type": "doc",
+  "_score": null,
+  "_source": {
+    "layers": {
+      "frame": {
+        "frame.section_number": "1",
+        "frame.interface_id": "0",
+        "frame.interface_id_tree": {
+          "frame.interface_name": "en0",
+          "frame.interface_description": "Wi-Fi"
+        },
+        "frame.encap_type": "23",
+        "frame.time": "Mar  1, 2024 21:07:04.765177000 Mountain Standard Time",
+        "frame.offset_shift": "0.000000000",
+        "frame.time_epoch": "1709352424.765177000",
+        "frame.time_delta": "0.000008000",
+        "frame.time_delta_displayed": "0.000008000",
+        "frame.time_relative": "0.193908000",
+        "frame.number": "51",
+        "frame.len": "860",
+        "frame.cap_len": "860",
+        "frame.marked": "0",
+        "frame.ignored": "0",
+        "frame.protocols": "radiotap:wlan_radio:wlan"
+      },
+      "radiotap": {
+        "radiotap.version": "0",
+        "radiotap.pad": "0",
+        "radiotap.length": "60",
+        "radiotap.present": {
+          "radiotap.present.word": "0x4030086b",
+          "radiotap.present.word_tree": {
+            "radiotap.present.tsft": "1",
+            "radiotap.present.flags": "1",
+            "radiotap.present.rate": "0",
+            "radiotap.present.channel": "1",
+            "radiotap.present.fhss": "0",
+            "radiotap.present.dbm_antsignal": "1",
+            "radiotap.present.dbm_antnoise": "1",
+            "radiotap.present.lock_quality": "0",
+            "radiotap.present.tx_attenuation": "0",
+            "radiotap.present.db_tx_attenuation": "0",
+            "radiotap.present.dbm_tx_power": "0",
+            "radiotap.present.antenna": "1",
+            "radiotap.present.db_antsignal": "0",
+            "radiotap.present.db_antnoise": "0",
+            "radiotap.present.rxflags": "0",
+            "radiotap.present.txflags": "0",
+            "radiotap.present.data_retries": "0",
+            "radiotap.present.xchannel": "0",
+            "radiotap.present.mcs": "0",
+            "radiotap.present.ampdu": "1",
+            "radiotap.present.vht": "1",
+            "radiotap.present.timestamp": "0",
+            "radiotap.present.he": "0",
+            "radiotap.present.he_mu": "0",
+            "radiotap.present.0_length.psdu": "0",
+            "radiotap.present.l_sig": "0",
+            "radiotap.present.tlv": "0",
+            "radiotap.present.rtap_ns": "0",
+            "radiotap.present.vendor_ns": "1",
+            "radiotap.present.ext": "0"
+          }
+        },
+        "radiotap.mactime": "1342634911",
+        "radiotap.flags": "0x10",
+        "radiotap.flags_tree": {
+          "radiotap.flags.cfp": "0",
+          "radiotap.flags.preamble": "0",
+          "radiotap.flags.wep": "0",
+          "radiotap.flags.frag": "0",
+          "radiotap.flags.fcs": "1",
+          "radiotap.flags.datapad": "0",
+          "radiotap.flags.badfcs": "0",
+          "radiotap.flags.shortgi": "0"
+        },
+        "radiotap.channel.freq": "5660",
+        "radiotap.channel.flags": "0x0140",
+        "radiotap.channel.flags_tree": {
+          "radiotap.channel.flags.700mhz": "0",
+          "radiotap.channel.flags.800mhz": "0",
+          "radiotap.channel.flags.900mhz": "0",
+          "radiotap.channel.flags.turbo": "0",
+          "radiotap.channel.flags.cck": "0",
+          "radiotap.channel.flags.ofdm": "1",
+          "radiotap.channel.flags.2ghz": "0",
+          "radiotap.channel.flags.5ghz": "1",
+          "radiotap.channel.flags.passive": "0",
+          "radiotap.channel.flags.dynamic": "0",
+          "radiotap.channel.flags.gfsk": "0",
+          "radiotap.channel.flags.gsm": "0",
+          "radiotap.channel.flags.sturbo": "0",
+          "radiotap.channel.flags.half": "0",
+          "radiotap.channel.flags.quarter": "0"
+        },
+        "radiotap.dbm_antsignal": "-43",
+        "radiotap.dbm_antnoise": "-97",
+        "radiotap.antenna": "0",
+        "radiotap.ampdu": {
+          "radiotap.ampdu.reference": "0",
+          "radiotap.ampdu.flags": "0x0008",
+          "radiotap.ampdu.flags_tree": {
+            "radiotap.ampdu.flags.report_zerolen": "0",
+            "radiotap.ampdu.flags.is_zerolen": "0",
+            "radiotap.ampdu.flags.lastknown": "0",
+            "radiotap.ampdu.flags.last": "1",
+            "radiotap.ampdu.flags.delim_crc_error": "0",
+            "radiotap.ampdu.flags.eof": "0",
+            "radiotap.ampdu.flags.eof_known": "0"
+          }
+        },
+        "radiotap.vht": {
+          "radiotap.vht.known": "0x01",
+          "radiotap.vht.known_tree": {
+            "radiotap.vht.have_stbc": "1",
+            "radiotap.vht.have_txop_ps": "1",
+            "radiotap.vht.have_gi": "1",
+            "radiotap.vht.have_sgi_nsym_da": "1",
+            "radiotap.vht.ldpc_extra": "1",
+            "radiotap.vht.have_beamformed": "1",
+            "radiotap.mcs.have_bw": "1",
+            "radiotap.mcs.have_gid": "1",
+            "radiotap.mcs.have_paid": "1"
+          },
+          "radiotap.vht.stbc": "0",
+          "radiotap.vht.txop_ps": "1",
+          "radiotap.vht.gi": "1",
+          "radiotap.vht.sgi_nsym_da": "0",
+          "radiotap.vht.ldpc_extra": "0",
+          "radiotap.vht.beamformed": "0",
+          "radiotap.vht.bw": "1",
+          "radiotap.vht.user": {
+            "radiotap.vht.mcs.0": "4",
+            "radiotap.vht.nss.0": "1",
+            "radiotap.vht.nsts.0": "1",
+            "radiotap.vht.coding.0": "0",
+            "radiotap.vht.datarate.0": "90"
+          },
+          "radiotap.vht.gid": "0",
+          "radiotap.vht.paid": "63"
+        },
+        "radiotap.vendor_namespace": "00:10:18:03:06:00:3f:12:c7:41:fe:02",
+        "radiotap.vendor_namespace_tree": {
+          "radiotap.vendor_oui": "4120",
+          "radiotap.vendor_subns": "3",
+          "radiotap.vendor_data_len": "6",
+          "radiotap.vendor_data": ""
+        }
+      },
+      "wlan_radio": {
+        "wlan_radio.phy": "8",
+        "wlan_radio.11ac.short_gi": "1",
+        "wlan_radio.11ac.bandwidth": "1",
+        "wlan_radio.11ac.stbc": "0",
+        "wlan_radio_11ac.txop_ps_not_allowed": "1",
+        "wlan_radio.11ac.short_gi_nsym_disambig": "0",
+        "wlan_radio.11ac.ldpc_extra_ofdm_symbol": "0",
+        "wlan_radio.11ac.beamformed": "0",
+        "wlan_radio.11ac.user": {
+          "wlan_radio.11ac.mcs": "4",
+          "wlan_radio.11ac.nss": "1",
+          "wlan_radio.11ac.nsts": "1",
+          "wlan_radio.11ac.fec": "0"
+        },
+        "wlan_radio.11ac.gid": "0",
+        "wlan_radio.11ac.paid": "63",
+        "wlan_radio.data_rate": "90",
+        "wlan_radio.channel": "132",
+        "wlan_radio.frequency": "5660",
+        "wlan_radio.signal_dbm": "-43",
+        "wlan_radio.noise_dbm": "-97",
+        "wlan_radio.snr": "54",
+        "wlan_radio.timestamp": "1342634911",
+        "wlan_radio.last_part_of_an_ampdu": "1",
+        "wlan_radio.a_mpdu_delim_crc_error": "0",
+        "wlan_radio.a_mpdu_aggregate_id": "0",
+        "wlan_radio.duration": "107",
+        "wlan_radio.duration_tree": {
+          "wlan_radio.preamble": "36",
+          "wlan_radio.ifs": "38",
+          "wlan_radio.start_tsf": "1342634804",
+          "wlan_radio.end_tsf": "1342634911"
+        }
+      },
+      "wlan": {
+        "wlan.fc.type_subtype": "0x000e",
+        "wlan.fc": "0xe000",
+        "wlan.fc_tree": {
+          "wlan.fc.version": "0",
+          "wlan.fc.type": "0",
+          "wlan.fc.subtype": "14",
+          "wlan.flags": "0x00",
+          "wlan.flags_tree": {
+            "wlan.fc.ds": "0x00",
+            "wlan.fc.tods": "0",
+            "wlan.fc.fromds": "0",
+            "wlan.fc.frag": "0",
+            "wlan.fc.retry": "0",
+            "wlan.fc.pwrmgt": "0",
+            "wlan.fc.moredata": "0",
+            "wlan.fc.protected": "0",
+            "wlan.fc.order": "0"
+          }
+        },
+        "wlan.duration": "0",
+        "wlan.ra": "d0:d3:e0:6d:ff:11",
+        "wlan.ra_resolved": "ArubaaHe_6d:ff:11",
+        "wlan.addr": "d0:d3:e0:6d:ff:11",
+        "wlan.addr_resolved": "ArubaaHe_6d:ff:11",
+        "wlan.da": "d0:d3:e0:6d:ff:11",
+        "wlan.da_resolved": "ArubaaHe_6d:ff:11",
+        "wlan.ta": "00:93:37:ba:20:c0",
+        "wlan.ta_resolved": "IntelCor_ba:20:c0",
+        "wlan.sa": "00:93:37:ba:20:c0",
+        "wlan.sa_resolved": "IntelCor_ba:20:c0",
+        "wlan.bssid": "d0:d3:e0:6d:ff:11",
+        "wlan.bssid_resolved": "ArubaaHe_6d:ff:11",
+        "wlan.frag": "0",
+        "wlan.seq": "2393",
+        "wlan.fcs": "0x2471a85d",
+        "wlan.fcs.status": "2"
+      },
+      "wlan.mgt": {
+        "Fixed parameters": {
+          "wlan.fixed.category_code": "30",
+          "wlan.he.action": "0",
+          "wlan.he.action_tree": {
+            "wlan.he.action.he_mimo_control.report_len": "772",
+            "wlan.he.action.he_mimo_control": "0x0000000088808259",
+            "wlan.he.action.he_mimo_control_tree": {
+              "wlan.he.mimo.nc_index": "1",
+              "wlan.he.mimo.nr_index": "3",
+              "wlan.he.mimo.bw": "1",
+              "wlan.he.mimo.grouping": "0",
+              "wlan.he.mimo.codebook_info": "1",
+              "wlan.he.mimo.feedback_type": "0",
+              "wlan.he.mimo.remaining_feedback_segs": "0",
+              "wlan.he.mimo.first_feedback_seg": "1",
+              "wlan.he.mimo.ru_start_index": "0x0000000000000000",
+              "wlan.he.mimo.ru_end_index": "0x0000000000000011",
+              "wlan.he.mimo.sounding_dialog_token_num": "2",
+              "wlan.he.mimo.reserved": "0"
+            },
+            "Average Signal to Noise Ratio": {
+              "wlan.he.mimo.beamforming_report.avgsnr": "22"
+            },
+            "Feedback Matrices": {
+              "wlan.he.action.he_mimo_control.scidx": "244"
+            }
+          }
+        }
+      }
+    }
+  }
+}
