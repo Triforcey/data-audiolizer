@@ -1,0 +1,25 @@
+{
+  "name": "data-audiolizer",
+  "version": "0.0.0",
+  "description": "Data Audiolizer",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Triforcey/data-audiolizer.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Triforcey/data-audiolizer/issues"
+  },
+  "homepage": "https://github.com/Triforcey/data-audiolizer#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
