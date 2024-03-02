@@ -28,6 +28,9 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
     if 'wlan.ta' in packetdata.keys():
         fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
         toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
+    elif 'wlan.sa' in packetdata.keys():
+        fromMac=[int(x,16) for x in '1a:2b:3c:4d:5e:6f'.split(":")]
+        toMac=[int(x,16) for x in 'a1:b2:c3:d4:e5:f6'.split(":")]
     else:
         fromMac=[int(x,16) for x in packetdata['wlan.sa'].split(":")]
         toMac=[int(x,16) for x in packetdata['wlan.da'].split(":")]
