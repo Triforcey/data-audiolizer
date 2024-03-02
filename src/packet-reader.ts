@@ -1,16 +1,19 @@
-import { createReadStream } from 'fs';
-import PCAPNGParser from 'pcap-ng-parser';
+import { spawn } from 'child_process';
+import { resolve } from 'path';
+import readline from 'readline';
 
-const readPcapngFile = (pcapngFile: string) => {
-  const fileStream = createReadStream(pcapngFile);
-  fileStream.on('error', err => {
-    console.error('Error reading file:', err);
-    process.exit(1);
+const readPcapngFile = async (pcapngFile: string) => {
+  const path = resolve(process.cwd(), pcapngFile);
+  const tshark = spawn('tshark', ['-r', path], {
+    stdio: 'pipe',
   });
-  const parser = new PCAPNGParser();
-  fileStream.pipe(parser);
-  parser.on('data', (packet) => {
-    console.log(packet);
+  const rl = readline.createInterface({
+    input: tshark.stdout,
+    output: process.stdout,
+    terminal: false
+  });
+  rl.on('line', (line) => {
+    console.log(line);
   });
 };
 

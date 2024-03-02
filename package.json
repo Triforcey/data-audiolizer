@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node index.js"
+    "start": "node dist/index.js"
   },
   "bin": {
     "audiolize": "dist/index.js"
@@ -24,8 +24,5 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "pcap-ng-parser": "^1.0.0"
   }
 }
