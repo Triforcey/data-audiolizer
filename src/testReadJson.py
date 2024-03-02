@@ -19,10 +19,11 @@ if __name__ == "__main__":
     with open(dir_path + '/oopsdroppedthis.json', 'r') as f:
         packetdata = json.load(f)
     packetdata = flatten_json(packetdata)
-    # print(packetdata)
+    print(packetdata)
     packetLength = float(packetdata['frame.len'])/10
-    fromMac=packetdata['wlan.sa'].split(":")
-    toMac=packetdata['wlan.da'].split(":")
+    fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
+    toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
+    # print(fromMac)
     numWaves = 1
     # print(packetLength)
     samplerate = 44100
@@ -31,10 +32,11 @@ if __name__ == "__main__":
     linTo = 1.
     t = np.linspace(0., linTo*packetLength, int(samplerate*packetLength))
     amplitude = 0;
+    maxFreq = 10000
 
     ampConst = 1
     startFreq = 0
-    endFreq = 1000
+    endFreq = 
 
     if True:
         # amplitude = (endFreq - startFreq)*2
