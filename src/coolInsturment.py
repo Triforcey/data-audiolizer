@@ -50,9 +50,9 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
 
     modShifter= (fromMac[1]/255)* 5
     modSpeed = (toMac[1]/255)* 5
-    if 170<=fromMac[2]/3 <256:
+    if 100<=fromMac[2]/3 <256:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
-    elif 85<fromMac[2]/3 <170:
+    elif 40<fromMac[2]/3 <100:
         # Create a sine wave modulator
         modulator = np.sin(modSpeed * np.pi * t / packetLength)  # One cycle over the packet length
         modulator = startFreq + (endFreq - startFreq) * (modulator + 1) / modShifter  # Shifts the modulator
@@ -63,9 +63,9 @@ def coolInsturment(packetdata, samplerate, dontWrite = False):
         print(toMac[3])
     if  toMac[3]<=205:
         print('normal stuff')
-        if 170<=toMac[2]/3 <256:
+        if 100<=toMac[2]/3 <256:
             data = amplitude * np.sin(2. * np.pi * modulator * t)
-        elif 85<toMac[2]/3 <170:
+        elif 40<toMac[2]/3 <100:
             data = amplitude * np.cos(2. * np.pi * modulator * t)
         else:
             data = (amplitude * np.tan(2. * np.pi * modulator * t)).astype(np.int16)
