@@ -27,7 +27,7 @@ if __name__ == "__main__":
     numWaves = 1
     # print(packetLength)
     samplerate = 44100
-    packetSpeed = 10
+    packetSpeed = 1
     fs = 1/packetLength
     linTo = 1.
     t = np.linspace(0., linTo*packetLength, int(samplerate*packetLength))
@@ -44,8 +44,8 @@ if __name__ == "__main__":
     else:
         amplitude = np.iinfo(np.int32).max*ampConst
 
-    modShifter=2
-    modSpeed = 2.
+    modShifter= (fromMac[1]/255)* 5
+    modSpeed = (toMac[1]/255)* 5
     if False:
         modulator = np.linspace(startFreq, endFreq, int(samplerate*packetLength))
     elif True:
