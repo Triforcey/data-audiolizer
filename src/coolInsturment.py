@@ -9,17 +9,11 @@ def flatten_json(json_obj, flat_json={}):
         else:
             flat_json[key] = json_obj[key]
     return flat_json
-if __name__ == "__main__":
+def coolInsturment(packetdata, samplerate):
 
     from scipy.io.wavfile import write
     import numpy as np
-    import json
-    # from flatten_json import flatten
-    packetdata ={}
-    with open(dir_path + '/oopsdroppedthis.json', 'r') as f:
-        packetdata = json.load(f)
-    packetdata = flatten_json(packetdata)
-    print(packetdata)
+
     packetLength = (float(packetdata['frame.len'])/20.)**1.2
     fromMac=[int(x,16) for x in packetdata['wlan.ta'].split(":")]
     toMac=[int(x,16) for x in packetdata['wlan.ra'].split(":")]
@@ -68,7 +62,7 @@ if __name__ == "__main__":
 
     # if False:
     #     #maybe secondary wave here idk
-    
+
     data = data[:int(len(data)*numWaves)]
 
     # print(data)
