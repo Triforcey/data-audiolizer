@@ -5,8 +5,11 @@ from datetime import datetime
 import pytz
 import numpy as np
 import sounddevice as sd
+<<<<<<< HEAD
 import threading
 import pyaudio
+=======
+>>>>>>> parent of fa2e9e4 (multi threading playing)
 
 class HandlePackets:
   def progress_bar(self, current, total, eta): # Added self as the first parameter
@@ -58,6 +61,7 @@ class HandlePackets:
       # Play the wave data immediately
       # Normalize the wave data to avoid loud sounds
       wavData = wavData / np.max(np.abs(wavData), axis=0)
+<<<<<<< HEAD
 
       # Create a separate thread for playing the audio
       # Create a PyAudio object
@@ -89,6 +93,9 @@ class HandlePackets:
       play_duration = len(wavData) / sampleRate
       play_thread = threading.Timer(play_duration, stop_stream)
       play_thread.start()
+=======
+      sd.play(wavData, sampleRate, blocking=False)
+>>>>>>> parent of fa2e9e4 (multi threading playing)
       return
 
     self.counter += 1
